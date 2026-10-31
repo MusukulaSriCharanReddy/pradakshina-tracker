@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%" height="auto" fill="none">
+  <defs>
+    <!-- Sky Gradient: Soft morning alpine twilight to clean snow-white -->
+    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#EBF1F6" />
+      <stop offset="60%" stop-color="#F4F8FA" />
+      <stop offset="100%" stop-color="#FFFFFF" />
+    </linearGradient>
+
+    <!-- Mountain Ridge Far Gradient -->
+    <linearGradient id="ridgeFar" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#CBD5E1" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#94A3B8" stop-opacity="0.25" />
+    </linearGradient>
+
+    <!-- Mountain Ridge Mid Gradient -->
+    <linearGradient id="ridgeMid" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#94A3B8" stop-opacity="0.5" />
+      <stop offset="100%" stop-color="#64748B" stop-opacity="0.4" />
+    </linearGradient>
+
+    <!-- Mountain Ridge Fore Gradient -->
+    <linearGradient id="ridgeFore" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#64748B" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#475569" stop-opacity="0.85" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background Base -->
+  <rect width="1200" height="360" fill="url(#skyGrad)" rx="16" />
+
+  <!-- Subtle Alpine Mountain Silhouette 1 (Distant Range) -->
+  <path d="M0 240 L120 195 L210 225 L340 160 L480 230 L590 175 L730 240 L860 180 L980 220 L1110 155 L1200 205 L1200 360 L0 360 Z"
+        fill="url(#ridgeFar)" />
+
+  <!-- Alpine Mountain Silhouette 2 (Mid-ground Range) -->
+  <path d="M0 260 L90 230 L190 200 L270 235 L390 185 L490 245 L620 195 L760 250 L890 205 L1020 255 L1140 210 L1200 235 L1200 360 L0 360 Z"
+        fill="url(#ridgeMid)" />
+
+  <!-- Sharp Alpine Ridge Line (Fore-ground Peaks) -->
+  <path d="M0 295 L140 250 L240 280 L360 225 L450 265 L560 215 L670 270 L790 210 L900 265 L1040 205 L1130 250 L1200 220 L1200 360 L0 360 Z"
+        fill="url(#ridgeFore)" />
+
+  <!-- Thin Pristine Snow Ridge Accent Line -->
+  <path d="M0 295 L140 250 L240 280 L360 225 L450 265 L560 215 L670 270 L790 210 L900 265 L1040 205 L1130 250 L1200 220"
+        stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
+
+  <!-- Alpine Peak Snow Caps -->
+  <path d="M360 225 L335 240 L350 243 L360 236 L372 245 L388 238 Z" fill="#FFFFFF" opacity="0.85" />
+  <path d="M560 215 L538 230 L552 233 L560 226 L570 235 L584 228 Z" fill="#FFFFFF" opacity="0.85" />
+  <path d="M790 210 L768 226 L782 230 L790 222 L802 232 L816 224 Z" fill="#FFFFFF" opacity="0.85" />
+  <path d="M1040 205 L1018 222 L1032 225 L1040 217 L1052 227 L1066 220 Z" fill="#FFFFFF" opacity="0.85" />
+
+  <!-- Centered Calm Typography -->
+  <g id="title-group" text-anchor="middle">
+    <!-- Small Sacred/Quiet Motif -->
+    <circle cx="600" cy="58" r="4" fill="#94A3B8" />
+    <circle cx="584" cy="58" r="2" fill="#CBD5E1" />
+    <circle cx="616" cy="58" r="2" fill="#CBD5E1" />
+
+    <!-- Project Title -->
+    <text x="600" y="108"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+          font-size="34"
+          font-weight="700"
+          letter-spacing="5"
+          fill="#1E293B">PRADAKSHINA TRACKER</text>
+
+    <!-- Subtitle / Horizon Descriptor -->
+    <text x="600" y="142"
+          font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+          font-size="14"
+          font-weight="400"
+          letter-spacing="3"
+          fill="#64748B">MINDFUL CIRCUMAMBULATION COMPANION</text>
+  </g>
+</svg>

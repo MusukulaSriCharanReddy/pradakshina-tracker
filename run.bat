@@ -16,9 +16,9 @@ if not exist node_modules (
     )
 )
 
-echo Starting server for PC and Mobile access...
-echo Local PC:    http://localhost:3000
-echo Mobile Phone: http://192.168.100.2:3000 (when on same Wi-Fi)
+echo Starting local development server...
+echo Local:   http://localhost:3000
+echo Network: http://0.0.0.0:3000
 echo.
 echo Press Ctrl+C in this window to stop the server.
 echo.

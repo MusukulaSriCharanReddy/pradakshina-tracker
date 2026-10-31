@@ -58,3 +58,4 @@ export const CountdownOverlay: React.FC<CountdownOverlayProps> = ({
     </div>
   );
 };
+

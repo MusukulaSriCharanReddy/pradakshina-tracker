@@ -1,6 +1,25 @@
 {
   "name": "pradakshina-tracker",
   "version": "0.1.0",
+  "description": "Privacy-first, mobile devotional circumambulation counter using browser satellite GPS, offline Web Audio chimes, and haptics.",
+  "author": "Musukula Sri Charan Reddy",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MusukulaSriCharanReddy/pradakshina-tracker.git"
+  },
+  "homepage": "https://pradakshina-tracker.vercel.app",
+  "keywords": [
+    "pradakshina",
+    "circumambulation",
+    "temple-counter",
+    "gps",
+    "pwa",
+    "nextjs",
+    "react",
+    "typescript",
+    "tailwind"
+  ],
   "private": true,
   "scripts": {
     "dev": "next dev -H 0.0.0.0",
