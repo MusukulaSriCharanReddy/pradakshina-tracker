@@ -50,8 +50,9 @@ coverage/
 *.tsbuildinfo
 next-env.d.ts
 
-# AI Agent Configs
+# AI Agent Configs & Generated Temp
 AGENTS.md
 agents.md
 .agents/
 .gemini/
+Gemini_Generated_Image_*

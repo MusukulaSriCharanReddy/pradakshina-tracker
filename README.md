@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/banner.svg" alt="Pradakshina Tracker Banner" width="100%" />
+  <img src="public/banner.jpg" alt="Pradakshina — Lord Ganesha circumambulating Lord Shiva and Mata Parvati at Mount Kailash" width="100%" style="border-radius: 16px; box-shadow: 0 10px 30px rgba(61, 53, 45, 0.15);" />
 </p>
 
 # Pradakshina Tracker
@@ -8,25 +8,48 @@
 
 <p align="center">
   <a href="https://pradakshina-tracker.vercel.app">
-    <img src="https://img.shields.io/badge/Live_Demo-C2410C?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
+    <img src="https://img.shields.io/badge/LIVE_DEMO-C47737?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" />
   </a>
   &nbsp;
   <a href="mailto:musukulasricharanreddy@gmail.com">
-    <img src="https://img.shields.io/badge/Contact_Me-D97706?style=for-the-badge&logo=maildotru&logoColor=white" alt="Contact Me" />
+    <img src="https://img.shields.io/badge/@_CONTACT_ME-D97706?style=for-the-badge&logo=maildotru&logoColor=white" alt="Contact Me" />
   </a>
   &nbsp;
   <a href="https://github.com/MusukulaSriCharanReddy">
-    <img src="https://img.shields.io/badge/Portfolio-7C2D12?style=for-the-badge&logo=github&logoColor=white" alt="Portfolio" />
+    <img src="https://img.shields.io/badge/PORTFOLIO-3D352D?style=for-the-badge&logo=github&logoColor=white" alt="Portfolio" />
   </a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/github/last-commit/MusukulaSriCharanReddy/pradakshina-tracker?style=flat-square&color=D97706" alt="Last Commit" />
+  <img src="https://img.shields.io/github/last-commit/MusukulaSriCharanReddy/pradakshina-tracker?style=flat-square&color=C47737&labelColor=555555" alt="Last Commit" />
   &nbsp;
-  <img src="https://img.shields.io/github/stars/MusukulaSriCharanReddy/pradakshina-tracker?style=flat-square&color=D97706" alt="Stars" />
+  <img src="https://img.shields.io/github/stars/MusukulaSriCharanReddy/pradakshina-tracker?style=flat-square&color=C47737&labelColor=555555" alt="Stars" />
   &nbsp;
-  <img src="https://img.shields.io/github/license/MusukulaSriCharanReddy/pradakshina-tracker?style=flat-square&color=D97706" alt="License" />
+  <img src="https://img.shields.io/github/license/MusukulaSriCharanReddy/pradakshina-tracker?style=flat-square&color=C47737&labelColor=555555" alt="License" />
 </p>
+
+---
+
+## The Story of Pradakshina
+
+In Hindu tradition, when Lord Shiva and Mata Parvati offered the divine fruit of supreme wisdom to whichever of their sons first circled the entire universe, Lord Kartikeya took flight across the heavens on his peacock. 
+
+Lord Ganesha calmly walked with folded hands in circumambulation (*pradakshina*) around his divine parents at Mount Kailash, saying: *"My parents contain the entire cosmos within them."* Pleased by his devotion and wisdom, Shiva and Parvati blessed him with the fruit.
+
+Pradakshina Tracker carries this sacred tradition into modern temple visits—honoring mindful circumambulation with quiet digital reverence.
+
+---
+
+## Devotional Color Palette
+
+Inspired by sacred temple architecture, sunlit sanctums, and timeless Indian spiritual aesthetics:
+
+| Color | Hex | Role |
+| :--- | :--- | :--- |
+| **Ivory** | `#F7F1E6` | Tranquil background, morning sunlight across temple stone |
+| **Saffron** | `#C47737` | Sacred circumambulation accents & primary action controls |
+| **Charcoal** | `#3D352D` | Grounded typography, timeless contrast & readability |
+| **Sandstone** | `#E8DCC8` | Delicate borders, ornamental dividers & metric cards |
 
 ---
 
@@ -37,15 +60,6 @@ Counting 108 rounds during pradakshina shouldn't require carrying a notebook, a 
 The application runs entirely in your mobile browser. There are no logins, no backend databases, no telemetry, and no advertisements—just satellite coordinates, an offline temple bell chime, and gentle palm vibrations.
 
 Rooted in the sacred saffron traditions of Hindu circumambulation, and built by an engineer drawn to quiet places, clean architecture, and the long-held dream of one day riding a Triumph Street Triple R through the Swiss Alps.
-
----
-
-## Visual Identity & Heritage
-
-<p align="center">
-  <img src="public/devotional-theme.jpg" alt="Sacred Saffron & Golden Mandala Aesthetic" width="560" style="border-radius: 16px; box-shadow: 0 10px 30px rgba(194, 65, 12, 0.2);" />
-</p>
-<p align="center"><em>Sacred saffron (केसरिया) and golden mandala aesthetic—honoring Hindu devotional circumambulation heritage with warm, tranquil tones.</em></p>
 
 ---
 
@@ -91,9 +105,9 @@ Rooted in the sacred saffron traditions of Hindu circumambulation, and built by 
   &nbsp;
   <img src="https://img.shields.io/badge/Tailwind_CSS_4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind CSS 4" />
   &nbsp;
-  <img src="https://img.shields.io/badge/Web_Audio_API-Native-D97706?style=flat-square" alt="Web Audio API" />
+  <img src="https://img.shields.io/badge/Web_Audio_API-Native-C47737?style=flat-square" alt="Web Audio API" />
   &nbsp;
-  <img src="https://img.shields.io/badge/Geolocation_API-Native-D97706?style=flat-square" alt="Geolocation API" />
+  <img src="https://img.shields.io/badge/Geolocation_API-Native-C47737?style=flat-square" alt="Geolocation API" />
 </p>
 
 ---
