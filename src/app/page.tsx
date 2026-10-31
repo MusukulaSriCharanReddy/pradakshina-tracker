@@ -10,6 +10,7 @@ import { SimulationControls } from "@/components/SimulationControls";
 import { SessionSummaryModal } from "@/components/SessionSummaryModal";
 import { SessionHistoryView } from "@/components/SessionHistoryView";
 import { SettingsModal } from "@/components/SettingsModal";
+import { CountdownOverlay } from "@/components/CountdownOverlay";
 import { usePradakshinaSession } from "@/hooks/use-pradakshina-session";
 
 export default function Home() {
@@ -25,13 +26,15 @@ export default function Home() {
     completedSummary,
     showHistoryModal,
     showSettingsModal,
+    countdown,
     setShowHistoryModal,
     setShowSettingsModal,
     clearCompletedSummary,
     updateSettings,
     selectTarget,
     setMode,
-    startSession,
+    startWithCountdown,
+    cancelCountdown,
     pauseSession,
     resumeSession,
     endSession,
@@ -103,7 +106,7 @@ export default function Home() {
           {/* Primary Session Controls */}
           <SessionControls
             state={state}
-            onStart={startSession}
+            onStart={startWithCountdown}
             onPause={pauseSession}
             onResume={resumeSession}
             onEnd={endSession}
@@ -216,7 +219,7 @@ export default function Home() {
           summary={completedSummary}
           onNewSession={() => {
             clearCompletedSummary();
-            startSession();
+            startWithCountdown();
           }}
           onViewHistory={() => {
             clearCompletedSummary();
@@ -224,6 +227,11 @@ export default function Home() {
           }}
           onClose={clearCompletedSummary}
         />
+      )}
+
+      {/* 3-2-1 Countdown Overlay */}
+      {countdown !== null && (
+        <CountdownOverlay count={countdown} onCancel={cancelCountdown} />
       )}
 
       {/* History Modal */}

@@ -31,6 +31,7 @@ export interface UsePradakshinaSessionReturn {
   completedSummary: CompletedSessionRecord | null;
   showHistoryModal: boolean;
   showSettingsModal: boolean;
+  countdown: number | null;
   setShowHistoryModal: (show: boolean) => void;
   setShowSettingsModal: (show: boolean) => void;
   clearCompletedSummary: () => void;
@@ -38,6 +39,8 @@ export interface UsePradakshinaSessionReturn {
   selectTarget: (target: number) => void;
   setMode: (mode: TrackingMode) => void;
   startSession: () => Promise<void>;
+  startWithCountdown: () => void;
+  cancelCountdown: () => void;
   pauseSession: () => void;
   resumeSession: () => void;
   endSession: () => void;
@@ -73,7 +76,9 @@ export function usePradakshinaSession(): UsePradakshinaSessionReturn {
   const [completedSummary, setCompletedSummary] = useState<CompletedSessionRecord | null>(null);
   const [showHistoryModal, setShowHistoryModal] = useState<boolean>(false);
   const [showSettingsModal, setShowSettingsModal] = useState<boolean>(false);
+  const [countdown, setCountdown] = useState<number | null>(null);
 
+  const countdownTimersRef = useRef<NodeJS.Timeout[]>([]);
   const sessionStartTimeRef = useRef<number>(initialActiveSession?.startedAt ?? 0);
   const engineRef = useRef<PradakshinaCountingEngine>(
     new PradakshinaCountingEngine({
@@ -232,7 +237,7 @@ export function usePradakshinaSession(): UsePradakshinaSessionReturn {
 
     if (mode === "gps") {
       try {
-        addLog("Requesting GPS fix for starting location (Point A)...");
+        addLog("Locking GPS fix for starting location (Point A)...");
         const initialGps = await locationProviderRef.current.getCurrentPosition();
 
         if (initialGps.accuracy > settings.maxAccuracyThresholdMeters) {
@@ -310,6 +315,58 @@ export function usePradakshinaSession(): UsePradakshinaSessionReturn {
     }
   }, [mode, target, settings.maxAccuracyThresholdMeters, settings.departureRadiusMeters, addLog, acquireWakeLock, triggerFeedback, releaseWakeLock, recordCompletion]);
 
+  // Cancel Countdown
+  const cancelCountdown = useCallback(() => {
+    countdownTimersRef.current.forEach((t) => clearTimeout(t));
+    countdownTimersRef.current = [];
+    setCountdown(null);
+    addLog("Start cancelled.");
+  }, [addLog]);
+
+  // 3, 2, 1 Countdown before starting session
+  const startWithCountdown = useCallback(() => {
+    if (countdown !== null) return;
+    countdownTimersRef.current.forEach((t) => clearTimeout(t));
+    countdownTimersRef.current = [];
+
+    setCountdown(3);
+    if (settings.soundChime) soundManager.playCountdownTick(3);
+    if (settings.hapticFeedback && typeof window !== "undefined" && "vibrate" in navigator) {
+      try { navigator.vibrate(60); } catch {}
+    }
+
+    const t1 = setTimeout(() => {
+      setCountdown(2);
+      if (settings.soundChime) soundManager.playCountdownTick(2);
+      if (settings.hapticFeedback && typeof window !== "undefined" && "vibrate" in navigator) {
+        try { navigator.vibrate(60); } catch {}
+      }
+    }, 1000);
+
+    const t2 = setTimeout(() => {
+      setCountdown(1);
+      if (settings.soundChime) soundManager.playCountdownTick(1);
+      if (settings.hapticFeedback && typeof window !== "undefined" && "vibrate" in navigator) {
+        try { navigator.vibrate(60); } catch {}
+      }
+    }, 2000);
+
+    const t3 = setTimeout(() => {
+      setCountdown(0); // "Begin! 🙏"
+      if (settings.soundChime) soundManager.playRoundBell();
+      if (settings.hapticFeedback && typeof window !== "undefined" && "vibrate" in navigator) {
+        try { navigator.vibrate([100, 50, 100]); } catch {}
+      }
+    }, 3000);
+
+    const t4 = setTimeout(() => {
+      setCountdown(null);
+      startSession();
+    }, 3700);
+
+    countdownTimersRef.current = [t1, t2, t3, t4];
+  }, [countdown, settings.soundChime, settings.hapticFeedback, startSession]);
+
   const pauseSession = useCallback(() => {
     const engine = engineRef.current;
     engine.pause();
@@ -352,6 +409,7 @@ export function usePradakshinaSession(): UsePradakshinaSessionReturn {
     return () => {
       provider.stop();
       releaseWakeLock();
+      countdownTimersRef.current.forEach((t) => clearTimeout(t));
     };
   }, [releaseWakeLock]);
 
@@ -475,6 +533,7 @@ export function usePradakshinaSession(): UsePradakshinaSessionReturn {
     completedSummary,
     showHistoryModal,
     showSettingsModal,
+    countdown,
     setShowHistoryModal,
     setShowSettingsModal,
     clearCompletedSummary: () => setCompletedSummary(null),
@@ -482,6 +541,8 @@ export function usePradakshinaSession(): UsePradakshinaSessionReturn {
     selectTarget,
     setMode: handleToggleMode,
     startSession,
+    startWithCountdown,
+    cancelCountdown,
     pauseSession,
     resumeSession,
     endSession,

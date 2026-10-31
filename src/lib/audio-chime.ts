@@ -1,6 +1,6 @@
 /**
- * Web Audio API synthesized temple bell chime.
- * Generates an ethereal, calm singing bell tone for round completion.
+ * Web Audio API synthesized temple bell chime & countdown sounds.
+ * Generates an ethereal, calm singing bell tone for round completion and countdown cues.
  * Fully offline, 0 network dependencies, 0 latency.
  */
 
@@ -22,7 +22,7 @@ class BellChime {
   }
 
   /**
-   * Plays a gentle, peaceful temple bell harmonic sound for +1 round.
+   * Plays a gentle, peaceful temple bell harmonic sound for +1 round or start.
    */
   public playRoundBell(): void {
     const ctx = this.getAudioContext();
@@ -51,6 +51,31 @@ class BellChime {
       osc.start(now);
       osc.stop(now + 1.6);
     });
+  }
+
+  /**
+   * Plays a soft gentle cue for countdown (3, 2, 1).
+   */
+  public playCountdownTick(count: number): void {
+    const ctx = this.getAudioContext();
+    if (!ctx) return;
+
+    const now = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+
+    osc.type = "sine";
+    // Slightly rising pitch as countdown approaches 1 (e.g. 440Hz -> 520Hz -> 600Hz)
+    osc.frequency.setValueAtTime(400 + (4 - count) * 80, now);
+
+    gain.gain.setValueAtTime(0.15, now);
+    gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.25);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    osc.start(now);
+    osc.stop(now + 0.25);
   }
 
   /**
@@ -84,4 +109,3 @@ class BellChime {
 }
 
 export const soundManager = new BellChime();
-
