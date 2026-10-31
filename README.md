@@ -4,7 +4,7 @@
 
 # Pradakshina Tracker
 
-> A quiet, privacy-first mobile companion that automatically counts temple circumambulations using browser satellite GPS.
+> A quiet, privacy-first mobile web companion that automatically counts temple circumambulations using browser satellite GPS.
 
 <p align="center">
   <a href="https://pradakshina-tracker.vercel.app">
@@ -30,61 +30,29 @@
 
 ---
 
-## The Story of Pradakshina
-
-In Hindu tradition, when Lord Shiva and Mata Parvati offered the divine fruit of supreme wisdom to whichever of their sons first circled the entire universe, Lord Kartikeya took flight across the heavens on his peacock. 
-
-Lord Ganesha calmly walked with folded hands in circumambulation (*pradakshina*) around his divine parents at Mount Kailash, saying: *"My parents contain the entire cosmos within them."* Pleased by his devotion and wisdom, Shiva and Parvati blessed him with the fruit.
-
-Pradakshina Tracker carries this sacred tradition into modern temple visits—honoring mindful circumambulation with quiet digital reverence.
-
----
-
-## Devotional Color Palette
-
-Inspired by sacred temple architecture, sunlit sanctums, and timeless Indian spiritual aesthetics:
-
-| Color | Hex | Role |
-| :--- | :--- | :--- |
-| **Ivory** | `#F7F1E6` | Tranquil background, morning sunlight across temple stone |
-| **Saffron** | `#C47737` | Sacred circumambulation accents & primary action controls |
-| **Charcoal** | `#3D352D` | Grounded typography, timeless contrast & readability |
-| **Sandstone** | `#E8DCC8` | Delicate borders, ornamental dividers & metric cards |
-
----
-
 ## About
 
-Counting 108 rounds during pradakshina shouldn't require carrying a notebook, a mechanical tally clicker, or a laptop to a sacred sanctum. Pradakshina Tracker was made to solve a familiar human problem: losing count around round 47 because you were actually immersed in prayer rather than your fingers.
+In Hindu tradition, when Lord Shiva and Mata Parvati offered the fruit of supreme wisdom to whoever first circled the cosmos, Lord Kartikeya flew across the heavens on his peacock. Lord Ganesha calmly walked around his parents at Mount Kailash, saying: *"My parents contain the entire universe."* Pleased by his wisdom and devotion, they blessed him—illuminating the sacred practice of *pradakshina*.
 
-The application runs entirely in your mobile browser. There are no logins, no backend databases, no telemetry, and no advertisements—just satellite coordinates, an offline temple bell chime, and gentle palm vibrations.
+Pradakshina Tracker brings this mindfulness to modern temple visits. Counting 108 rounds shouldn't require carrying a notebook or mechanical clicker into a sanctum. The app automatically tracks rounds in your mobile browser with zero logins, zero ads, and zero external servers—just satellite coordinates, an offline temple bell chime, and subtle palm vibrations.
 
-Rooted in the sacred saffron traditions of Hindu circumambulation, and built by an engineer drawn to quiet places, clean architecture, and the long-held dream of one day riding a Triumph Street Triple R through the Swiss Alps.
+### Core Rule
+
+$$\text{Start at Point A} \longrightarrow \text{Leave Point A (>20m)} \longrightarrow \text{Return to Point A (<8m)} = \text{Count } + 1$$
+
+Walk any path, direction, or speed. No route calibration or geometric shape validation required.
 
 ---
 
 ## Features
 
-- **Autonomous Counting Invariant**  
-  Follows a simple rule: *Start at Point A → Leave Point A (>20m) → Return to Point A (<8m) = Count +1*. Walk in any direction or path; no route validation, calibration, or geometry checks required.
-
-- **Satellite GPS & Hysteresis Filtering**  
-  Uses separate departure (20m) and return (8m) thresholds with accuracy filtering (≤15m error) to prevent boundary jitter and false counts.
-
-- **3-2-1 Audio-Haptic Countdown**  
-  Gives you 3 seconds to stand still in front of the deity so the device locks accurate starting coordinates before walking starts.
-
-- **Synthesized Offline Temple Bell & Haptics**  
-  Pure Web Audio API synthesizes a resonant temple bell harmonic for round completions—zero audio downloads, zero network latency, with rhythmic vibration feedback.
-
-- **Interactive Dev Simulator**  
-  Test targets, audio, and state transitions without leaving your desk using built-in virtual departure and return controls.
-
-- **100% Offline & Private**  
-  Operates completely client-side. Active sessions and completion logs persist in browser `localStorage`. No data is ever transmitted to an external server.
-
-- **PWA & Screen Wake Lock**  
-  Installs to iOS/Android home screens and utilizes the Screen Wake Lock API to prevent the display from sleeping mid-session.
+- **Autonomous GPS Counter:** Automatically counts rounds upon departure and return to Point A without manual tapping.
+- **GPS Jitter & Hysteresis Protection:** Distinct departure (>20m) and return (<8m) thresholds with accuracy filtering (≤15m error) prevent false increments.
+- **3-2-1 Audio-Haptic Countdown:** Grants 3 seconds of stillness before the walk starts to lock accurate satellite coordinates.
+- **Synthesized Temple Bell & Haptics:** Offline Web Audio harmonic chime and gentle vibration feedback on round completions.
+- **Interactive Dev Simulator:** Test counting logic, sound chimes, and target goals directly from your desk without walking outside.
+- **100% Client-Side & Private:** Active sessions and history persist locally in browser `localStorage`. No location data is ever transmitted to a backend.
+- **PWA & Screen Wake Lock:** Installable to mobile home screens with wake lock enabled to keep the display active while walking.
 
 ---
 
@@ -118,56 +86,34 @@ Rooted in the sacred saffron traditions of Hindu circumambulation, and built by 
 - Node.js 20.x or 24.x
 - npm 10.x or higher
 
-### Installation
+### Quick Start
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/MusukulaSriCharanReddy/pradakshina-tracker.git
-   cd pradakshina-tracker
-   ```
+```bash
+# 1. Clone repository
+git clone https://github.com/MusukulaSriCharanReddy/pradakshina-tracker.git
+cd pradakshina-tracker
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+# 2. Install dependencies
+npm install
 
-3. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) on your desktop or mobile browser.
+# 3. Start development server
+npm run dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) on your desktop or mobile browser.
 
 ### Verification & Testing
 
-- **Run unit test suite** (18 automated tests covering all counting logic, jitter protection, and edge cases):
-  ```bash
-  npm test
-  ```
+```bash
+# Run unit test suite (18 automated tests covering engine and edge cases)
+npm test
 
-- **Run code quality checks**:
-  ```bash
-  npm run lint
-  ```
+# Run code linter
+npm run lint
 
-- **Build for production**:
-  ```bash
-  npm run build
-  ```
-
----
-
-## Work With Me
-
-I design and build clean, reliable, and privacy-first web applications.
-
-### What I Build
-- **Mobile-first Web & PWA Applications:** Offline-capable, sensor-driven, and installable web apps.
-- **Interactive UI & Design Systems:** Minimalist, accessible interfaces focused on clarity, performance, and typography.
-- **Client-Side Architectural Engines:** High-performance mathematical models, geolocation tracking, and state persistence with zero server overhead.
-
-### Let's Connect
-- **Email:** [musukulasricharanreddy@gmail.com](mailto:musukulasricharanreddy@gmail.com)
-- **GitHub:** [@MusukulaSriCharanReddy](https://github.com/MusukulaSriCharanReddy)
+# Build optimized production bundle
+npm run build
+```
 
 ---
 
