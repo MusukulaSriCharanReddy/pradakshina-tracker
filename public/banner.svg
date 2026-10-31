@@ -1,77 +1,117 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 360" width="100%" height="auto" fill="none">
   <defs>
-    <!-- Sky Gradient: Soft morning alpine twilight to clean snow-white -->
-    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#EBF1F6" />
-      <stop offset="60%" stop-color="#F4F8FA" />
-      <stop offset="100%" stop-color="#FFFFFF" />
+    <!-- Deep Saffron & Warm Amber Gradient (Sacred Hindu Temple Sunrise) -->
+    <linearGradient id="saffronGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7C2D12" />
+      <stop offset="30%" stop-color="#9A3412" />
+      <stop offset="65%" stop-color="#C2410C" />
+      <stop offset="90%" stop-color="#EA580C" />
+      <stop offset="100%" stop-color="#F59E0B" />
     </linearGradient>
 
-    <!-- Mountain Ridge Far Gradient -->
-    <linearGradient id="ridgeFar" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#CBD5E1" stop-opacity="0.35" />
-      <stop offset="100%" stop-color="#94A3B8" stop-opacity="0.25" />
-    </linearGradient>
+    <!-- Golden Radiant Glow -->
+    <radialGradient id="sunGlow" cx="95%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#FEF3C7" stop-opacity="0.45" />
+      <stop offset="40%" stop-color="#FDE68A" stop-opacity="0.25" />
+      <stop offset="75%" stop-color="#F59E0B" stop-opacity="0.10" />
+      <stop offset="100%" stop-color="#C2410C" stop-opacity="0" />
+    </radialGradient>
 
-    <!-- Mountain Ridge Mid Gradient -->
-    <linearGradient id="ridgeMid" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#94A3B8" stop-opacity="0.5" />
-      <stop offset="100%" stop-color="#64748B" stop-opacity="0.4" />
-    </linearGradient>
-
-    <!-- Mountain Ridge Fore Gradient -->
-    <linearGradient id="ridgeFore" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#64748B" stop-opacity="0.7" />
-      <stop offset="100%" stop-color="#475569" stop-opacity="0.85" />
-    </linearGradient>
+    <!-- Golden Mandala Petal Pattern Definition -->
+    <path id="mandala-petal" d="M0,0 C15,-35 40,-50 0,-110 C-40,-50 -15,-35 0,0 Z"
+          fill="none" stroke="#FDE68A" stroke-width="1.5" opacity="0.65" />
+    <path id="small-petal" d="M0,0 C8,-18 20,-28 0,-60 C-20,-28 -8,-18 0,0 Z"
+          fill="none" stroke="#FEF3C7" stroke-width="1.2" opacity="0.75" />
   </defs>
 
-  <!-- Background Base -->
-  <rect width="1200" height="360" fill="url(#skyGrad)" rx="16" />
+  <!-- Base Sacred Saffron Canvas -->
+  <rect width="1200" height="360" fill="url(#saffronGrad)" rx="16" />
+  <rect width="1200" height="360" fill="url(#sunGlow)" rx="16" />
 
-  <!-- Subtle Alpine Mountain Silhouette 1 (Distant Range) -->
-  <path d="M0 240 L120 195 L210 225 L340 160 L480 230 L590 175 L730 240 L860 180 L980 220 L1110 155 L1200 205 L1200 360 L0 360 Z"
-        fill="url(#ridgeFar)" />
+  <!-- Subtle Sacred Geometric Border Lines -->
+  <rect x="12" y="12" width="1176" height="336" rx="10"
+        fill="none" stroke="#FDE68A" stroke-width="1" stroke-dasharray="8 6" opacity="0.35" />
 
-  <!-- Alpine Mountain Silhouette 2 (Mid-ground Range) -->
-  <path d="M0 260 L90 230 L190 200 L270 235 L390 185 L490 245 L620 195 L760 250 L890 205 L1020 255 L1140 210 L1200 235 L1200 360 L0 360 Z"
-        fill="url(#ridgeMid)" />
+  <!-- Rich Ornate Mandala Structure on Right Flank -->
+  <g transform="translate(1080, 180)">
+    <!-- Concentric Sacred Rings -->
+    <circle r="320" fill="none" stroke="#FEF3C7" stroke-width="1" stroke-dasharray="4 6" opacity="0.25" />
+    <circle r="275" fill="none" stroke="#FDE68A" stroke-width="1.5" opacity="0.35" />
+    <circle r="230" fill="none" stroke="#FDE68A" stroke-width="1.2" stroke-dasharray="12 4" opacity="0.45" />
+    <circle r="190" fill="none" stroke="#FEF3C7" stroke-width="2" opacity="0.55" />
+    <circle r="155" fill="none" stroke="#FDE68A" stroke-width="1" opacity="0.45" />
+    <circle r="120" fill="none" stroke="#FEF3C7" stroke-width="2" opacity="0.65" />
+    <circle r="85" fill="none" stroke="#FDE68A" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.55" />
+    <circle r="50" fill="none" stroke="#FEF3C7" stroke-width="2" opacity="0.75" />
+    <circle r="25" fill="#FEF3C7" opacity="0.3" />
+    <circle r="8" fill="#FFFFFF" opacity="0.9" />
 
-  <!-- Sharp Alpine Ridge Line (Fore-ground Peaks) -->
-  <path d="M0 295 L140 250 L240 280 L360 225 L450 265 L560 215 L670 270 L790 210 L900 265 L1040 205 L1130 250 L1200 220 L1200 360 L0 360 Z"
-        fill="url(#ridgeFore)" />
+    <!-- Outer Large Petal Ring (16 Petals) -->
+    <g transform="rotate(0)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(22.5)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(45)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(67.5)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(90)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(112.5)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(135)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(157.5)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(180)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(202.5)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(225)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(247.5)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(270)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(292.5)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(315)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+    <g transform="rotate(337.5)"><use href="#mandala-petal" /><use href="#small-petal" /></g>
+  </g>
 
-  <!-- Thin Pristine Snow Ridge Accent Line -->
-  <path d="M0 295 L140 250 L240 280 L360 225 L450 265 L560 215 L670 270 L790 210 L900 265 L1040 205 L1130 250 L1200 220"
-        stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
+  <!-- Left Side: Devotional Typography & Title Motif -->
+  <g transform="translate(80, 0)">
+    <!-- Sacred Om / Lotus Icon Motif -->
+    <g transform="translate(0, 75)">
+      <circle cx="28" cy="28" r="28" fill="#FEF3C7" fill-opacity="0.15" stroke="#FDE68A" stroke-width="1.5" />
+      <!-- Lotus Symbol Path -->
+      <path d="M28 14 C29.5 20 33 26 38 30 C34 31 30 35 28 40 C26 35 22 31 18 30 C23 26 26.5 20 28 14 Z"
+            fill="#FEF3C7" />
+      <path d="M28 30 C33 34 39 36 44 35 C40 39 35 41 28 41 C21 41 16 39 12 35 C17 36 23 34 28 30 Z"
+            fill="#FDE68A" opacity="0.85" />
+    </g>
 
-  <!-- Alpine Peak Snow Caps -->
-  <path d="M360 225 L335 240 L350 243 L360 236 L372 245 L388 238 Z" fill="#FFFFFF" opacity="0.85" />
-  <path d="M560 215 L538 230 L552 233 L560 226 L570 235 L584 228 Z" fill="#FFFFFF" opacity="0.85" />
-  <path d="M790 210 L768 226 L782 230 L790 222 L802 232 L816 224 Z" fill="#FFFFFF" opacity="0.85" />
-  <path d="M1040 205 L1018 222 L1032 225 L1040 217 L1052 227 L1066 220 Z" fill="#FFFFFF" opacity="0.85" />
+    <!-- Sanskrit Shloka Fragment -->
+    <text x="75" y="98"
+          font-family="Georgia, 'Times New Roman', serif"
+          font-size="15"
+          font-weight="600"
+          letter-spacing="3"
+          fill="#FDE68A"
+          opacity="0.95">॥ प्रदक्षिण पदे पदे ॥</text>
 
-  <!-- Centered Calm Typography -->
-  <g id="title-group" text-anchor="middle">
-    <!-- Small Sacred/Quiet Motif -->
-    <circle cx="600" cy="58" r="4" fill="#94A3B8" />
-    <circle cx="584" cy="58" r="2" fill="#CBD5E1" />
-    <circle cx="616" cy="58" r="2" fill="#CBD5E1" />
-
-    <!-- Project Title -->
-    <text x="600" y="108"
+    <!-- Main Title -->
+    <text x="0" y="170"
           font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
-          font-size="34"
-          font-weight="700"
+          font-size="44"
+          font-weight="800"
           letter-spacing="5"
-          fill="#1E293B">PRADAKSHINA TRACKER</text>
+          fill="#FFFFFF">PRADAKSHINA TRACKER</text>
 
     <!-- Subtitle / Horizon Descriptor -->
-    <text x="600" y="142"
+    <text x="2" y="212"
           font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif"
+          font-size="16"
+          font-weight="500"
+          letter-spacing="4"
+          fill="#FEF3C7">DEVOTIONAL CIRCUMAMBULATION COMPANION</text>
+
+    <!-- Quiet Invariant Tagline -->
+    <text x="2" y="258"
+          font-family="Georgia, 'Times New Roman', serif"
+          font-style="italic"
           font-size="14"
-          font-weight="400"
-          letter-spacing="3"
-          fill="#64748B">MINDFUL CIRCUMAMBULATION COMPANION</text>
+          fill="#FED7AA"
+          opacity="0.9">Point A → Departure (>20m) → Return (<8m) = Count +1</text>
+
+    <!-- Saffron Divider Line -->
+    <line x1="2" y1="280" x2="380" y2="280" stroke="#FDE68A" stroke-width="1.5" opacity="0.4" />
+    <circle cx="190" cy="280" r="3" fill="#FEF3C7" />
   </g>
 </svg>
