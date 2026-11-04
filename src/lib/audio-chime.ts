@@ -106,6 +106,23 @@ class BellChime {
       }, idx * 180);
     });
   }
+
+  /**
+   * Optional calm voice announcement using browser SpeechSynthesis for pocket mode.
+   */
+  public speakRoundCount(count: number, target: number): void {
+    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    try {
+      window.speechSynthesis.cancel();
+      const text = count >= target ? `Pradakshina completed. All ${count} rounds finished.` : `Round ${count}`;
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.rate = 0.9; // Calm, respectful pace
+      utterance.pitch = 1.0;
+      window.speechSynthesis.speak(utterance);
+    } catch {
+      // Ignore if speech synthesis is disabled or unsupported
+    }
+  }
 }
 
 export const soundManager = new BellChime();

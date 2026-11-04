@@ -9,17 +9,31 @@ interface TargetSelectorProps {
   disabled?: boolean;
 }
 
-const PRESETS: TargetPreset[] = [11, 21, 51, 108];
+export interface TemplePresetInfo {
+  count: TargetPreset;
+  label: string;
+  tradition: string;
+}
+
+export const TEMPLE_PRESETS: TemplePresetInfo[] = [
+  { count: 3, label: "Ganesha", tradition: "Temple Minimum / Vinayaka" },
+  { count: 9, label: "Navagraha", tradition: "Nine Cosmic Planets" },
+  { count: 11, label: "Rudra", tradition: "Lord Shiva / Ekadasha" },
+  { count: 21, label: "Devi / Vrata", tradition: "Goddess & Sankashti" },
+  { count: 51, label: "Shakti", tradition: "Shakti Peetha Sankalpa" },
+  { count: 108, label: "Maha Mala", tradition: "Full Sacred Circumambulation" },
+];
 
 export const TargetSelector: React.FC<TargetSelectorProps> = ({
   selectedTarget,
   onSelectTarget,
   disabled = false,
 }) => {
-  const isPreset = PRESETS.includes(selectedTarget as TargetPreset);
+  const activePreset = TEMPLE_PRESETS.find((p) => p.count === selectedTarget);
+  const isPreset = !!activePreset;
   const [isCustomMode, setIsCustomMode] = useState(!isPreset);
   const [customValue, setCustomValue] = useState(
-    !isPreset ? String(selectedTarget) : "9"
+    !isPreset ? String(selectedTarget) : "108"
   );
   const [error, setError] = useState<string | null>(null);
 
@@ -58,36 +72,61 @@ export const TargetSelector: React.FC<TargetSelectorProps> = ({
 
   return (
     <div className="w-full flex flex-col gap-2.5">
+      {/* Target Header with Tradition Context */}
       <div className="flex items-center justify-between px-0.5">
-        <label className="text-xs font-semibold uppercase tracking-wider text-[#7C7267]">
+        <label className="text-[11px] font-semibold uppercase tracking-wider text-[#7C7267]">
           Target Rounds
         </label>
-        <span className="text-xs text-[#7C7267]">
-          Target: <strong className="text-[#C47737] font-bold">{selectedTarget}</strong>
+        <span className="text-xs text-[#7C7267] truncate max-w-[240px] text-right">
+          Target:{" "}
+          <strong className="text-[#C47737] font-bold">
+            {selectedTarget}
+          </strong>
+          {activePreset && (
+            <span className="ml-1 text-[11px] text-[#7C7267] font-normal hidden xs:inline">
+              ({activePreset.label})
+            </span>
+          )}
         </span>
       </div>
 
-      {/* Preset Buttons Grid */}
-      <div className="grid grid-cols-4 gap-2">
-        {PRESETS.map((preset) => {
-          const isSelected = !isCustomMode && selectedTarget === preset;
+      {/* Temple Ritual Presets Grid (2 rows x 3 columns) */}
+      <div className="grid grid-cols-3 gap-2">
+        {TEMPLE_PRESETS.map((preset) => {
+          const isSelected = !isCustomMode && selectedTarget === preset.count;
           return (
             <button
-              key={preset}
+              key={preset.count}
               type="button"
               disabled={disabled}
-              onClick={() => handlePresetClick(preset)}
-              className={`py-2.5 rounded-2xl text-sm font-semibold transition-all duration-200 border ${
+              onClick={() => handlePresetClick(preset.count)}
+              className={`py-2 px-1.5 rounded-2xl flex flex-col items-center justify-center transition-all duration-200 border ${
                 isSelected
                   ? "bg-[#C47737] text-white border-[#C47737] shadow-sm shadow-[#C47737]/30 scale-[1.02]"
                   : "bg-[#FAF6F0] text-[#3D352D] border-[#E8DCC8] hover:border-[#C47737]/60 hover:bg-[#F2EAE0]"
               } ${disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer active:scale-95"}`}
             >
-              {preset}
+              <span className="text-base font-bold font-serif leading-tight">
+                {preset.count}
+              </span>
+              <span
+                className={`text-[10px] font-medium tracking-tight mt-0.5 ${
+                  isSelected ? "text-white/90" : "text-[#7C7267]"
+                }`}
+              >
+                {preset.label}
+              </span>
             </button>
           );
         })}
       </div>
+
+      {/* Active Preset Tradition Hint */}
+      {activePreset && !isCustomMode && (
+        <p className="text-[11px] text-[#7C7267] italic text-center px-1 -mt-1">
+          {activePreset.tradition}
+        </p>
+      )}
 
       {/* Custom Target Input or Toggle */}
       <div className="mt-0.5">
@@ -96,7 +135,7 @@ export const TargetSelector: React.FC<TargetSelectorProps> = ({
             type="button"
             disabled={disabled}
             onClick={handleCustomModeToggle}
-            className={`w-full py-2 px-3 text-xs font-medium text-[#7C7267] bg-[#FAF6F0] rounded-xl border border-[#E8DCC8] hover:border-[#C47737]/50 hover:text-[#C47737] transition-colors text-center ${
+            className={`w-full py-1.5 px-3 text-xs font-medium text-[#7C7267] bg-[#FAF6F0] rounded-xl border border-[#E8DCC8] hover:border-[#C47737]/50 hover:text-[#C47737] transition-colors text-center ${
               disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
             }`}
           >
@@ -124,7 +163,7 @@ export const TargetSelector: React.FC<TargetSelectorProps> = ({
                 onClick={() => handlePresetClick(108)}
                 className="text-xs text-[#7C7267] hover:text-[#3D352D] underline px-1 shrink-0"
               >
-                Reset
+                Presets
               </button>
             </div>
             {error && (

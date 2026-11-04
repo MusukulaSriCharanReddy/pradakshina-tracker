@@ -39,6 +39,7 @@ export interface UserSettings {
   maxAccuracyThresholdMeters: number;
   hapticFeedback: boolean;
   soundChime: boolean;
+  voiceAnnouncement: boolean;
 }
 
 export const DEFAULT_USER_SETTINGS: UserSettings = {
@@ -47,6 +48,7 @@ export const DEFAULT_USER_SETTINGS: UserSettings = {
   maxAccuracyThresholdMeters: 20,
   hapticFeedback: true,
   soundChime: true,
+  voiceAnnouncement: false,
 };
 
 export function saveActiveSession(session: ActiveSessionData): void {

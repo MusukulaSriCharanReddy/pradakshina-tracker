@@ -16,7 +16,7 @@ export type LocationPoint = {
   timestamp: number;
 };
 
-export type TargetPreset = 11 | 21 | 51 | 108;
+export type TargetPreset = 3 | 9 | 11 | 21 | 51 | 108;
 
 export interface PradakshinaSession {
   id: string;

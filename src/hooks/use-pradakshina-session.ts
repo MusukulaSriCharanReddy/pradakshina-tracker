@@ -128,9 +128,9 @@ export function usePradakshinaSession(): UsePradakshinaSessionReturn {
     }
   }, []);
 
-  // Sensory feedback (haptic vibration + bell chime)
+  // Sensory feedback (haptic vibration + bell chime + voice)
   const triggerFeedback = useCallback(
-    (type: "round" | "complete") => {
+    (type: "round" | "complete", currentRound?: number) => {
       // Haptics
       if (settings.hapticFeedback && typeof window !== "undefined" && "vibrate" in navigator) {
         try {
@@ -152,8 +152,13 @@ export function usePradakshinaSession(): UsePradakshinaSessionReturn {
           soundManager.playCompletionChime();
         }
       }
+
+      // Voice Announcement (for pocket-safe hands-free walking)
+      if (settings.voiceAnnouncement && currentRound !== undefined) {
+        soundManager.speakRoundCount(currentRound, target);
+      }
     },
-    [settings.hapticFeedback, settings.soundChime]
+    [settings.hapticFeedback, settings.soundChime, settings.voiceAnnouncement, target]
   );
 
   // Synchronize engine if active session was restored
@@ -270,12 +275,12 @@ export function usePradakshinaSession(): UsePradakshinaSessionReturn {
                 `GPS: Left Point A (${Math.round(processRes.distanceToStartMeters || 0)}m away). Walking round. Return to count.`
               );
             } else if (processRes.event === "RETURN_DETECTED") {
-              triggerFeedback("round");
+              triggerFeedback("round", processRes.count);
               addLog(
                 `GPS: Returned to Point A (${Math.round(processRes.distanceToStartMeters || 0)}m). Count +1 (${processRes.count}/${target}).`
               );
             } else if (processRes.event === "TARGET_COMPLETED") {
-              triggerFeedback("complete");
+              triggerFeedback("complete", processRes.count);
               releaseWakeLock();
               locationProviderRef.current.stop();
               recordCompletion(processRes.count);
@@ -457,14 +462,14 @@ export function usePradakshinaSession(): UsePradakshinaSessionReturn {
     setCount(res.count);
 
     if (res.event === "RETURN_DETECTED") {
-      triggerFeedback("round");
+      triggerFeedback("round", res.count);
       addLog(
         `Returned to Point A! Distance: ${Math.round(
           res.distanceToStartMeters || 4
         )}m (<${settings.returnRadiusMeters}m). Count +1 (${res.count}/${target}). Waiting for next departure.`
       );
     } else if (res.event === "TARGET_COMPLETED") {
-      triggerFeedback("complete");
+      triggerFeedback("complete", res.count);
       releaseWakeLock();
       recordCompletion(res.count);
       addLog(

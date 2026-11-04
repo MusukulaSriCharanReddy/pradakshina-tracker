@@ -99,6 +99,20 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
                 className="w-5 h-5 accent-[#C47737] cursor-pointer"
               />
             </div>
+
+            {/* Voice Announcement Toggle */}
+            <div className="flex items-center justify-between p-3 rounded-2xl bg-[#FAF6F0] border border-[#E8DCC8]">
+              <div>
+                <p className="text-xs font-bold text-[#3D352D]">Spoken Voice Announcement</p>
+                <p className="text-[11px] text-[#7C7267]">Speaks round number for hands-free pocket walking</p>
+              </div>
+              <input
+                type="checkbox"
+                checked={settings.voiceAnnouncement}
+                onChange={(e) => setSettings({ ...settings, voiceAnnouncement: e.target.checked })}
+                className="w-5 h-5 accent-[#C47737] cursor-pointer"
+              />
+            </div>
           </div>
 
           {/* GPS Thresholds Section */}

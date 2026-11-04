@@ -11,6 +11,7 @@ import { SessionSummaryModal } from "@/components/SessionSummaryModal";
 import { SessionHistoryView } from "@/components/SessionHistoryView";
 import { SettingsModal } from "@/components/SettingsModal";
 import { CountdownOverlay } from "@/components/CountdownOverlay";
+import { PocketModeOverlay } from "@/components/PocketModeOverlay";
 import { usePradakshinaSession } from "@/hooks/use-pradakshina-session";
 
 export default function Home() {
@@ -45,6 +46,7 @@ export default function Home() {
   } = usePradakshinaSession();
 
   const [showDevotionModal, setShowDevotionModal] = useState(false);
+  const [isPocketMode, setIsPocketMode] = useState(false);
   const isSessionActive = state !== "idle";
 
   return (
@@ -109,7 +111,11 @@ export default function Home() {
             onStart={startWithCountdown}
             onPause={pauseSession}
             onResume={resumeSession}
-            onEnd={endSession}
+            onEnd={() => {
+              setIsPocketMode(false);
+              endSession();
+            }}
+            onEnterPocketMode={() => setIsPocketMode(true)}
           />
         </section>
 
@@ -232,6 +238,24 @@ export default function Home() {
       {/* 3-2-1 Countdown Overlay */}
       {countdown !== null && (
         <CountdownOverlay count={countdown} onCancel={cancelCountdown} />
+      )}
+
+      {/* Pocket-Safe Ambient Mode Overlay */}
+      {isPocketMode && isSessionActive && (
+        <PocketModeOverlay
+          count={count}
+          target={target}
+          state={state}
+          mode={mode}
+          voiceEnabled={!!settings.voiceAnnouncement}
+          onToggleVoice={() =>
+            updateSettings({
+              ...settings,
+              voiceAnnouncement: !settings.voiceAnnouncement,
+            })
+          }
+          onExitPocketMode={() => setIsPocketMode(false)}
+        />
       )}
 
       {/* History Modal */}
